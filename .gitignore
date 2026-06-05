@@ -1,0 +1,30 @@
+# Dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
+.next/
+.vercel/
+
+# Logs
+*.log
+logs/
+
+# Temporários
+temp/
+tmp/

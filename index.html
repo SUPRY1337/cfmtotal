@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescrição Eletrônica - CFM (Clone Teste)</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="content/css/loading.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', 'Montserrat', -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #008159 0%, #006b47 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .header-title {
+            flex: 1;
+        }
+        
+        .header-title h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .header-title p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 20px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-menu a {
+            color: #5a5f63;
+            text-decoration: none;
+            display: block;
+            padding: 10px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .sidebar-menu a:hover {
+            background: #f2f5f7;
+            color: #008159;
+            border-left: 3px solid #008159;
+            padding-left: 9px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .document-header {
+            border-bottom: 2px solid #008159;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .document-header h2 {
+            color: #008159;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .validation-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .validation-badge::before {
+            content: "✓";
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .icp-badge {
+            width: 40px;
+            height: 40px;
+            background: #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .info-section {
+            margin-bottom: 30px;
+        }
+        
+        .info-section h3 {
+            color: #008159;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            word-break: break-word;
+        }
+        
+        .validation-info {
+            background: #f9f9f9;
+            border-left: 4px solid #008159;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .validation-info table {
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .validation-info td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .validation-info td:first-child {
+            font-weight: 600;
+            color: #008159;
+            width: 40%;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: #008159;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #006b47;
+        }
+        
+        .btn-secondary {
+            background: #f2f5f7;
+            color: #5a5f63;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e8eef2;
+        }
+        
+        .footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 12px;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">🏥 PRESCRIÇÃO ELETRÔNICA</div>
+        <div class="header-title">
+            <h1>Consulta de Documentos Médicos</h1>
+            <p>CFM - Conselho Federal de Medicina</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#validador">Validador ITI</a></li>
+                <li><a href="#faq">Perguntas Frequentes</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="document-header">
+                <h2>Atestado de Saúde</h2>
+                <div class="validation-badge">
+                    Assinado Digitalmente
+                    <span class="icp-badge" title="Certificado ICP-Brasil"></span>
+                </div>
+                <p style="color: #666; font-size: 14px; margin-top: 10px;">Documento Validado com sucesso.</p>
+            </div>
+            
+            <div class="info-section">
+                <h3>Dados do Médico</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nome</span>
+                        <span class="info-value">Dr. Carlos Alberto Silva</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">CRM</span>
+                        <span class="info-value">12345 - SP</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Especialidade</span>
+                        <span class="info-value">CLÍNICA GERAL - RQE nº 54321</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Telefone</span>
+                        <span class="info-value">(11) 3456-7890</span>
+                    </div>
+                </div>
+                <div class="info-item" style="margin-top: 15px;">
+                    <span class="info-label">Local de Atendimento</span>
+                    <span class="info-value">Av. Paulista, 1000 - Apto 500 - São Paulo - SP</span>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Dados do Paciente</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nome</span>
+                        <span class="info-value">João da Silva Santos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Idade</span>
+                        <span class="info-value">35 anos</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="validation-info">
+                <table>
+                    <tr>
+                        <td>Tipo de Documento</td>
+                        <td>Atestado de Saúde</td>
+                    </tr>
+                    <tr>
+                        <td>Data da Prescrição</td>
+                        <td>15/06/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Código de Validação</td>
+                        <td><strong>CFMP-AT-TESTE1234</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td><span style="color: #4caf50; font-weight: bold;">✓ Validado</span></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-secondary">Voltar</button>
+                <button class="btn-primary">Visualizar Documento</button>
+            </div>
+        </main>
+    </div>
+    
+    <div class="footer">
+        <p>SISTEMA PRESCRIÇÃO ELETRÔNICA © CONSELHO FEDERAL DE MEDICINA</p>
+        <p>v1.9.20 (Clone de Teste)</p>
+    </div>
+</body>
+</html>

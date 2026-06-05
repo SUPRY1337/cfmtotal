@@ -1,0 +1,22 @@
+{
+  "name": "site-prescricao-cfm",
+  "version": "1.0.0",
+  "description": "Clone do layout de Prescrição Eletrônica CFM com dados fictícios",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "cfm",
+    "prescricao",
+    "eletronica",
+    "clone",
+    "teste"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
